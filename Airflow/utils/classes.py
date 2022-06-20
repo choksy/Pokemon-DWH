@@ -55,7 +55,7 @@ class Entity:
          "pokemons": [16, ...]}
     """
     def __init__(self, json_data: JsonType) -> None:
-        self.identical_fields = ["id"]  # Это переменные класса!!!
+        self.identical_fields = ["id"]
         self.fields_to_process = {}
         self.raw_json_data = json_data
 
@@ -261,7 +261,7 @@ class APIDownloader:
     Provides access to the RESTful Pokémon API.
     """
     API_URL = "https://pokeapi.co/api/v2/"
-    TIMEOUT = 0.2 # Проверить значение
+    TIMEOUT = 0.2
 
     def __init__(self, entity_class: EndpointsType) -> None:
         self.entity_class = entity_class
@@ -280,7 +280,7 @@ class APIDownloader:
         Returns a set of all the IDs currently present in the API
         for the endpoint assigned to this instance of API_downloader
         """
-        url = f"{type(self).API_URL}{self.endpoint_name}/?limit=10000" #magic number
+        url = f"{type(self).API_URL}{self.endpoint_name}/?limit=10000"
         json_data = self.fetch_json(url)
         return {get_id(d["url"]) for d in json_data["results"]}
 
@@ -289,7 +289,7 @@ class APIDownloader:
         Downloads the entity with a given id_ and returns an instance
         of the assigned Entity subclass: PokemonType, Move, Species or Pokemon
         """
-        url = f"{type(self).API_URL}{self.endpoint_name}/{id_}/"  # вынести в init?
+        url = f"{type(self).API_URL}{self.endpoint_name}/{id_}/"
         json_data = self.fetch_json(url)
         sleep(type(self).TIMEOUT)
         return self.entity_class(json_data)

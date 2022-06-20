@@ -16,7 +16,10 @@ It makes use of the data from [The RESTful Pokémon API]( https://pokeapi.co/) t
 The **Airflow** folder contains the code for two DAGs:
 - **check_generations** solves the second task: It downloads all the generation ids from API once per day, compares it with the latest saved data and if any changes are discovered uploads the new data to a txt file in the assigned s3 folder. The logs are printed out to the logs of the Airflow tasks.
 - **download_data_from_API_to_s3** downloads via API all the data necessary to answer the questions of the firs task and writes it as json files into the assigned s3 folder.
-- **utils** folder contains classes and functions used by these DAGs.
+- **utils** folder contains classes and functions used by these DAGs.  
+
+In the common s3 folder all these files had *antr_* prefix in their names to distinguish from the other students works,
+but here I deleted them, because they look too ugly. The files with antr_ prefixes in s3 have some minor differences with the version in this project.
 
 The **Snowflake** folder contains the script used to build the Pokémon Data Warehouse.
 
